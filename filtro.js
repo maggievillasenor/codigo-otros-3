@@ -10,35 +10,28 @@ const productos = [
 ]
 
 //const li = document.getElementsByName("lista-de-productos")
-const li2 = document.querySelector('input');
-let li = document.getElementsByName("lista-de-productos"); // se cambió var por let
+const li = document.getElementById("lista-de-productos") // llamamos el id correctamente con getElementById
+const li2 = document.querySelector('.input');
 
-for (let i = 0; i < productos.length; i++) {
-  let d = document.createElement("div") // se cambió var por let
-  d.classList.add("productos") //se modificó el elemento productos
+function displayProductos(productos){
 
-  let titulo = document.createElement("p") //se modificó el nombre de la variable ti
-  titulo.classList.add("titulo")
-  titulo.textContent = productos[i].nombre
-  
-  let imagen = document.createElement("img");
-  imagen.setAttribute('src', productos[i].img);
-
-  d.appendChild(titulo) //correción de ti
-  d.appendChild(imagen)
-  //li.appendChild(d)
+  for (let contador = 0; contador < productos.length; contador++) {
+    let zapato = `<div class ="producto">
+    <p class="titulo">${productos[contador].nombre}</p>
+    <img src=${productos[contador].img}></img></div>`
+    li.innerHTML+= zapato;  
+  }
 }
 
-//displayProductos(productos)
+displayProductos(productos)
 const botonDeFiltro = document.querySelector("button");
 
-botonDeFiltro.onclick = function(a) {
-  a.tar
+botonDeFiltro.onclick = function() {
   while (li.firstChild) {
     li.removeChild(li.firstChild);
   }
 
-  const texto = li.value; //se cambió la referencia de li
+  const texto = li2.value; //se cambió la referencia de li por li2
   console.log(texto);
   const productosFiltrados = filtrado(productos, texto);
 
@@ -46,17 +39,19 @@ botonDeFiltro.onclick = function(a) {
     let d = document.createElement("div")
     d.classList.add("producto") //producto
   
-    let titulo = document.createElement("p")
-    titulo.classList.add("titulo")
-    titulo.textContent = productosFiltrados[i].nombre
+    let ti = document.createElement("p")
+    ti.classList.add("titulo")
+    ti.textContent = productosFiltrados[i].nombre
     
     var imagen = document.createElement("img");
     imagen.setAttribute('src', productosFiltrados[i].img);
   
-    d.appendChild(titulo)
+    d.appendChild(ti)
     d.appendChild(imagen)
   
-    //li.appendChild(d)
+    li.appendChild(d)
+
+
   }
 }
 
